@@ -1,30 +1,23 @@
 // Assignment code here
+var low = false;
+var upp = false;
+var numb = false;
+var spec = false;
+var go = false;
+var specialCharacters = "";
+var uppercaseCharacters = "";
+var lowercaseCharacters = "";
+var numberList = "";
+var userPassword = "";
+var length = 0
 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-};
-
-// var length = function() {
-//   var userLength = window.prompt("How many characters would you like in your password?");
-//   var userPassword = "";
-//   for (var i = 0; i < userLength; i++)
-// };
 
 var mods = function() {
-  var low = false;
-  var upp = false;
-  var numb = false;
-  var spec = false;
-  var go = false;
    while (go === false) { 
     var userMods = window.prompt(
       "Type 'Lowercase', 'Uppercase', 'Numbers', or 'Special' to add or remove it from these attributs to your password. Enter 'Go' to generate your password."
@@ -33,7 +26,8 @@ var mods = function() {
       window.alert("Please enter a valid response");
       mods();
     }
-    var userMods = userMods.toLowerCase;
+    // Still need a way to check that they entered the right response
+    // userMods.toLowerCase;
     switch(userMods) {
       case "lowercase":
         if (!low) {
@@ -90,9 +84,49 @@ var mods = function() {
       case "go":
         go = true;
         break;
+      default:
+        window.alert("You did not pick a valid option. Try again.");
+        break;
     }
    }
    writePassword();
+};
+
+var generatePassword = function() {
+  var passwordOptions = (specialCharacters + lowercaseCharacters + uppercaseCharacters + numberList);
+  var length = parseInt(window.prompt("How many characters would you like in your password (8-128)?"));
+  if (low) {
+    lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
+  }
+  if (upp) {
+    uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  }
+  if (numb) {
+    numberList = "0123456789";
+  }
+  if (spec) {
+    specialCharacters = " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  }
+  console.log(passwordOptions.length);
+  console.log(passwordOptions);
+  if (length == "" || length == "null" || !length || length < 8 || length > 128) {
+    window.alert("Please enter a valid response");
+    generatePassword();
+  }
+  else {
+    for (var i = 0; i <= length; i++) {
+    userPassword += passwordOptions.charAt(Math.random() * passwordOptions.length);
+    console.log(userPassword);
+  }
+}
+};
+
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+  window.alert("Password Generated: " + password)
 };
 
 // Add event listener to generate button
