@@ -29,7 +29,7 @@ var mods = function() {
       window.alert("Please enter a valid response");
       mods();
     }
-    // Still need a way to check that they entered the right response
+    // Changes user input to lowercase for ease of use
     userMods.toLowerCase;
     switch(userMods) {
       case "lowercase":
@@ -103,7 +103,7 @@ var mods = function() {
    writePassword();
 };
 
-var writePassword =function() {
+var writePassword = function() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
@@ -118,7 +118,6 @@ var generatePassword = function() {
   }
   return userPassword;
 };
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", mods);
