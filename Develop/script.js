@@ -1,4 +1,5 @@
 // Assignment code here
+// Our global strings that we add to based on what paremeters the user selects
 var specialCharacters = "";
 var uppercaseCharacters = "";
 var lowercaseCharacters = "";
@@ -9,14 +10,15 @@ var length = 0;
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-
 var mods = function() {
   var low = false;
   var upp = false;
   var numb = false;
   var spec = false;
   var go = false;
+  // Gets length of user password
   length = parseInt(window.prompt("How many characters would you like in your password (8-128)?"));
+  // Ensures the user cannot put in an inporper response
   if (length == "" || length == "null" || !length || length < 8 || length > 128) {
     window.alert("Please enter a valid response");
     mods();
@@ -32,7 +34,9 @@ var mods = function() {
     // Changes user input to lowercase for ease of use
     userMods.toLowerCase;
     switch(userMods) {
+      // Puts user text in lowercase to prevent caps errors
       case "lowercase":
+        // if any parameter is true, it will be toggled on and can be toggled off if the user inputs the attribute again
         if (!low) {
           low = true;
           window.alert("Your password will NOW contain lowercase letters");
@@ -102,7 +106,7 @@ var mods = function() {
 
    writePassword();
 };
-
+// Displays the password by changing the text of #password
 var writePassword = function() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -110,6 +114,7 @@ var writePassword = function() {
   window.alert("Password Generated!");
 };
 
+// Puts all of our strings together and randomly selects one character at a time, then generates and returns password 
 var generatePassword = function() {
   var userPassword = "";
   var passwordOptions = (specialCharacters + lowercaseCharacters + uppercaseCharacters + numberList);
