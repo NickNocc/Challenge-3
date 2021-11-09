@@ -11,3 +11,5 @@
 * Added code to prevent the user from selecting no attributes for their password 
 
 * Cleaning up code
+
+* Updated comments
